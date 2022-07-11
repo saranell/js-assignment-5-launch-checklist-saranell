@@ -1,9 +1,8 @@
 // Write your helper functions here!
-// validateInput() should take in a string as a parameter and return "Empty", "Not a Number", or "Is a Number" as appropriate.
-// In scriptHelper.js, you will use validateInput() to complete the formSubmission() function.
-// formSubmission() will take in a document parameter and strings representing the pilot, co-pilot, fuel level, and cargo mass.
-// Using the values in those strings and the document parameter for your HTML document, update the shuttle requirements as described below.
-// Make sure to call your formSubmission() function at the appropriate time in your script.js file!
+// TODO: validateInput() should take in a string as a parameter and return "Empty", "Not a Number", or "Is a Number" as appropriate.
+// TODO: formSubmission() will take in a document parameter and strings representing the pilot, co-pilot, fuel level, and cargo mass.
+// TODO: Using the values in those strings and the document parameter for your HTML document, update the shuttle requirements as described below.
+// TODO: Make sure to call your formSubmission() function at the appropriate time in your script.js file!
 require("isomorphic-fetch");
 
 function addDestinationInfo(
@@ -29,16 +28,55 @@ function addDestinationInfo(
    */
 }
 
-function validateInput(testInput) {}
+function validateInput(testInput) {
+  let form = document.querySelector("form");
+  form.addEventListener("submit", function (event) {
+    let pilot = document.querySelector("input[name=pilotName]");
+    let copilot = document.querySelector("input[name=copilotName");
+    let fuel = document.querySelector("input[name=fuelLevel]");
+    let cargo = document.querySelector("input[name=cargoMass]");
 
-function formSubmission(
-  document,
-  list,
-  pilot,
-  copilot,
-  fuelLevel,
-  cargoLevel
-) {}
+    if (pilot.value || copilot.value === "") {
+      alert("Empty");
+    }
+    if (!isNaN(fuel || cargo)) {
+      alert("Not a number");
+    } else if (isNaN(fuel || cargo)) {
+      alert("Is a number");
+      event.preventDefault();
+    }
+  });
+}
+
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+  //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
+  let faultyItems = document.querySelector("faultyItems");
+  let launchStatus = document.getElementById("launchStatus");
+  let fuelStatus = document.getElementById("fuelStatus");
+  let cargoStatus = document.getElementById("cargoStatus");
+
+  //TODO: If the user submits a fuel level that is too low (less than 10,000 liters), change faultyItems to visible with an updated fuel status stating that there is not enough fuel for the journey.
+  // The text of the h2 element, launchStatus, should also change to "Shuttle not ready for launch" and the color should change to red.
+  if (fuelLevel.value < 10000) {
+    faultyItems.visibility = "visible";
+    fuelStatus.innerHTML = "Not enough fuel for the journey!";
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
+  }
+  //TODO: If the user submits a cargo mass that is too large (more than 10,000 kilograms), change the list to visible with an updated cargo status stating that there is too much mass for the shuttle to take off.
+  // The text of launchStatus should also change to "Shuttle not ready for launch" and the color should change to red.
+  if (cargo > 10000) {
+    faultyItems.visibility = "visible";
+    cargoStatus.innerHTML = "Too much mass for takeoff!";
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
+  }
+  //TODO: If the shuttle is ready to launch, change the text of launchStatus to green and display "Shuttle is ready for launch".
+  else {
+    launchStatus.style.color = "green";
+    launchStatus.innerHTML = "Shuttle is ready for launch.";
+  }
+}
 
 async function myFetch() {
   let planetsReturned;
