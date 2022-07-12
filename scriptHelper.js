@@ -3,7 +3,8 @@
 // TODO: formSubmission() will take in a document parameter and strings representing the pilot, co-pilot, fuel level, and cargo mass.
 // TODO: Using the values in those strings and the document parameter for your HTML document, update the shuttle requirements as described below.
 // TODO: Make sure to call your formSubmission() function at the appropriate time in your script.js file!
-require("isomorphic-fetch");
+
+// require("isomorphic-fetch");
 
 function addDestinationInfo(
   document,
@@ -28,27 +29,24 @@ function addDestinationInfo(
    */
 }
 
-function validateInput(testInput) {
-  let form = document.querySelector("form");
-  form.addEventListener("submit", function (event) {
-    let pilot = document.querySelector("input[name=pilotName]");
-    let copilot = document.querySelector("input[name=copilotName");
-    let fuel = document.querySelector("input[name=fuelLevel]");
-    let cargo = document.querySelector("input[name=cargoMass]");
+function validateInput() {
+  let pilot = document.querySelector("input[name=pilotName]");
+  let copilot = document.querySelector("input[name=copilotName");
+  let fuel = document.querySelector("input[name=fuelLevel]");
+  let cargo = document.querySelector("input[name=cargoMass]");
 
-    if (pilot.value || copilot.value === "") {
-      alert("Empty");
-    }
-    if (!isNaN(fuel || cargo)) {
-      alert("Not a number");
-    } else if (isNaN(fuel || cargo)) {
-      alert("Is a number");
-      event.preventDefault();
-    }
-  });
+  if (pilot.value === "" || copilot.value === "") {
+    alert("Empty");
+  }
+  if (!isNaN(fuel || cargo)) {
+    alert("Not a number");
+  } else if (isNaN(fuel || cargo)) {
+    alert("Is a number");
+  }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+  validateInput();
   //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
   let faultyItems = document.querySelector("faultyItems");
   let launchStatus = document.getElementById("launchStatus");
@@ -88,8 +86,8 @@ async function myFetch() {
 
 function pickPlanet(planets) {}
 
-module.exports.addDestinationInfo = addDestinationInfo;
-module.exports.validateInput = validateInput;
-module.exports.formSubmission = formSubmission;
-module.exports.pickPlanet = pickPlanet;
-module.exports.myFetch = myFetch;
+// module.exports.addDestinationInfo = addDestinationInfo;
+// module.exports.validateInput = validateInput;
+// module.exports.formSubmission = formSubmission;
+// module.exports.pickPlanet = pickPlanet;
+// module.exports.myFetch = myFetch;
