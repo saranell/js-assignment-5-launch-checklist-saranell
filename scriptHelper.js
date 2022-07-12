@@ -30,11 +30,6 @@ function addDestinationInfo(
 }
 
 function validateInput() {
-  let pilot = document.querySelector("input[name=pilotName]");
-  let copilot = document.querySelector("input[name=copilotName");
-  let fuel = document.querySelector("input[name=fuelLevel]");
-  let cargo = document.querySelector("input[name=cargoMass]");
-
   if (pilot.value === "" || copilot.value === "") {
     alert("Empty");
   }
@@ -48,7 +43,12 @@ function validateInput() {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   validateInput();
   //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
-  let faultyItems = document.querySelector("faultyItems");
+  let document = document.querySelector("document");
+  let list = document.querySelector("faultyItems");
+  let pilot = document.querySelector("input[name=pilotName]");
+  let copilot = document.querySelector("input[name=copilotName");
+  let fuelLevel = document.querySelector("input[name=fuelLevel]");
+  let cargoLevel = document.querySelector("input[name=cargoMass]");
   let launchStatus = document.getElementById("launchStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
@@ -56,7 +56,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   //TODO: If the user submits a fuel level that is too low (less than 10,000 liters), change faultyItems to visible with an updated fuel status stating that there is not enough fuel for the journey.
   // The text of the h2 element, launchStatus, should also change to "Shuttle not ready for launch" and the color should change to red.
   if (fuelLevel.value < 10000) {
-    faultyItems.visibility = "visible";
+    list.visibility = "visible";
     fuelStatus.innerHTML = "Not enough fuel for the journey!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
@@ -64,7 +64,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   //TODO: If the user submits a cargo mass that is too large (more than 10,000 kilograms), change the list to visible with an updated cargo status stating that there is too much mass for the shuttle to take off.
   // The text of launchStatus should also change to "Shuttle not ready for launch" and the color should change to red.
   if (cargo > 10000) {
-    faultyItems.visibility = "visible";
+    list.visibility = "visible";
     cargoStatus.innerHTML = "Too much mass for takeoff!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
