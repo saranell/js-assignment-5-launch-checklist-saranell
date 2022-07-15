@@ -41,13 +41,16 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
-  validateInput(pilot.value);
-  validateInput(copilot.value);
-
+  let pilotStatus = document.getElementById("pilotStatus");
+  let copilotStatus = document.getElementById("copilotStatus");
   let launchStatus = document.getElementById("launchStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
+  //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
+  validateInput(pilot.value);
+  validateInput(copilot.value);
+  pilotStatus.innerHTML += `Pilot ${pilot.value} ready`;
+  copilotStatus.innerHTML += `Co-pilot ${copilot.value} ready`;
 
   //TODO: If the user submits a fuel level that is too low (less than 10,000 liters), change faultyItems to visible with an updated fuel status stating that there is not enough fuel for the journey.
   // The text of the h2 element, launchStatus, should also change to "Shuttle not ready for launch" and the color should change to red.
