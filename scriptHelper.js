@@ -30,18 +30,20 @@
 // }
 
 function validateInput(testInput) {
-  if (pilot === "" || copilot === "") {
+  if (testInput === "") {
     alert("Empty");
   }
-  if (!isNaN(fuel || cargo)) {
+  if (!isNaN(testInput)) {
     alert("Not a number");
-  } else if (isNaN(fuel || cargo)) {
+  } else if (isNan(testInput)) {
     alert("Is a number");
   }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
+  validateInput(pilot.value);
+  validateInput(copilot.value);
 
   let launchStatus = document.getElementById("launchStatus");
   let fuelStatus = document.getElementById("fuelStatus");
