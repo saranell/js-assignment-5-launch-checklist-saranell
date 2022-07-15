@@ -6,31 +6,31 @@
 
 // require("isomorphic-fetch");
 
-function addDestinationInfo(
-  document,
-  name,
-  diameter,
-  star,
-  distance,
-  moons,
-  imageUrl
-) {
-  // Here is the HTML formatting for our mission target div.
-  /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
-}
+// function addDestinationInfo(
+//   document,
+//   name,
+//   diameter,
+//   star,
+//   distance,
+//   moons,
+//   imageUrl
+// ) {
+//   // Here is the HTML formatting for our mission target div.
+//   /*
+//                 <h2>Mission Destination</h2>
+//                 <ol>
+//                     <li>Name: </li>
+//                     <li>Diameter: </li>
+//                     <li>Star: ${star}</li>
+//                     <li>Distance from Earth: </li>
+//                     <li>Number of Moons: </li>
+//                 </ol>
+//                 <img src="">
+//    */
+// }
 
-function validateInput() {
-  if (pilot.value === "" || copilot.value === "") {
+function validateInput(testInput) {
+  if (pilot === "" || copilot === "") {
     alert("Empty");
   }
   if (!isNaN(fuel || cargo)) {
@@ -43,12 +43,7 @@ function validateInput() {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   validateInput();
   //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
-  let document = document.querySelector("document");
-  let list = document.querySelector("faultyItems");
-  let pilot = document.querySelector("input[name=pilotName]");
-  let copilot = document.querySelector("input[name=copilotName");
-  let fuelLevel = document.querySelector("input[name=fuelLevel]");
-  let cargoLevel = document.querySelector("input[name=cargoMass]");
+
   let launchStatus = document.getElementById("launchStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
