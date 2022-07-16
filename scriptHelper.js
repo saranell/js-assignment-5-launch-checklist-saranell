@@ -30,14 +30,7 @@
 // }
 
 function validateInput(testInput) {
-  if (testInput === "") {
-    alert("Empty");
-  }
-  if (!isNaN(testInput)) {
-    alert("Not a number");
-  } else if (isNan(testInput)) {
-    alert("Is a number");
-  }
+  return testInput;
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
@@ -47,8 +40,10 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
   //TODO: Using template literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name.
-  validateInput(pilot.value);
-  validateInput(copilot.value);
+  validateInput(pilot.value, copilot.value);
+  if (pilot.value === "" || copilot === "") {
+    alert("All fields required!");
+  }
   pilotStatus.innerHTML += `Pilot ${pilot.value} ready`;
   copilotStatus.innerHTML += `Co-pilot ${copilot.value} ready`;
 
@@ -60,6 +55,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     fuelStatus.innerHTML = "Not enough fuel for the journey!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
+  } else if (!NaN(fuelLevel)) {
+    alert("Not a number");
   }
   //TODO: If the user submits a cargo mass that is too large (more than 10,000 kilograms), change the list to visible with an updated cargo status stating that there is too much mass for the shuttle to take off.
   // The text of launchStatus should also change to "Shuttle not ready for launch" and the color should change to red.
@@ -69,6 +66,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     cargoStatus.innerHTML = "Too much mass for takeoff!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
+  } else if (!NaN(cargoLevel)) {
+    alert("Not a number!");
   }
   //TODO: If the shuttle is ready to launch, change the text of launchStatus to green and display "Shuttle is ready for launch".
   else {
