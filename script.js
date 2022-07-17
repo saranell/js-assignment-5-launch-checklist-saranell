@@ -3,7 +3,7 @@
 // const { formSubmission } = require("./scriptHelper");
 
 window.addEventListener("load", function () {
-  let list = document.querySelector("faultyItems");
+  let list = document.getElementById("faultyItems");
   let pilot = document.querySelector("input[name=pilotName]");
   let copilot = document.querySelector("input[name=copilotName");
   let fuelLevel = document.querySelector("input[name=fuelLevel]");
