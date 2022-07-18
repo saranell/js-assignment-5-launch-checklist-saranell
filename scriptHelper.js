@@ -11,7 +11,6 @@ function addDestinationInfo(
   moons,
   imageUrl
 ) {
-  //   // Here is the HTML formatting for our mission target div.
   let mission = document.getElementById("missionTarget");
   mission.innerHTML = `<h2>Mission Destination</h2>
                 <ol>
@@ -21,7 +20,7 @@ function addDestinationInfo(
                     <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons} </li>
                 </ol>
-                 <img src="${image}">`;
+                 <img src=${imageUrl} alt = Photo of ${name}>`;
 }
 
 function validateInput(testInput) {
@@ -41,49 +40,56 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
 
-  validateInput(pilot.value, copilot.value);
-  if (pilot.value === "" || copilot === "") {
+  //   } else if (isNaN(pilotTest) === false || isNaN(copilotTest) === false || isNaN(fuelLevel) || isNaN(cargoLevel)) {
+  //         //alert
+  //
+  //             if (fuelLevel < 10000 && cargoLevel <= 10000) {
+  // 		//stuff
+  //             } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
+  // 		//stuff
+  //             } else if (fuelLevel < 10000 && cargoLevel > 10000) {
+  // 		// stuff
+  validateInput(pilot, copilot, fuelLevel, cargoLevel);
+  if (
+    pilot.value === "" ||
+    copilot === "" ||
+    fuelLevel === "" ||
+    cargoLevel === ""
+  ) {
     alert("All fields required!");
+  } else if (
+    sNaN(pilot.value) ||
+    isNaN(copilot.value) ||
+    !isNaN(fuelLevel) ||
+    !isNaN(cargoLevel)
+  ) {
+    alert("Invalid entry");
   } else {
+    list.style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot ${pilot.value} ready`;
     copilotStatus.innerHTML = `Co-pilot ${copilot.value} ready`;
   }
-
-  validateInput(fuelLevel, cargoLevel);
-  //   if (!isNaN(fuelLevel)) {
-  //     alert("Invalid entry. Needs to be a number");
-  if (fuelLevel.value < 10000) {
+  if (fuelLevel.value < 10000 && cargoLevel.value <= 10000) {
     list.style.visibility = "visible";
     fuelStatus.innerHTML = "Not enough fuel for the journey!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
-  }
-  if (cargoLevel.value > 10000) {
+  } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
     list.style.visibility = "visible";
     cargoStatus.innerHTML = "Too much mass for takeoff!";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
-    // } else if (!isNaN(cargoLevel)) {
-    //   alert("Invalid entry. Needs to be a number");
+  } else {
+    launchStatus.style.color = "green";
+    launchStatus.innerHTML = "Shuttle is ready for launch.";
   }
 }
-
-if (
-  fuelLevel.value >= 10000 &&
-  cargoLevel <= 10000 &&
-  pilotStatus !== "" &&
-  copilotStatus !== ""
-) {
-  launchStatus.style.color = "green";
-  launchStatus.innerHTML = "Shuttle is ready for launch.";
-}
-
 async function myFetch() {
   let planetsReturned;
 
   planetsReturned = await fetch(
     "https://handlers.education.launchcode.org/static/planets.json"
-  ).then(function (response) {
+  ).then((response) => {
     return response.json();
   });
 
