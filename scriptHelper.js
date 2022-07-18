@@ -1,29 +1,28 @@
 // Write your helper functions here!
 
-// require("isomorphic-fetch");
+require("isomorphic-fetch");
 
-// function addDestinationInfo(
-//   document,
-//   name,
-//   diameter,
-//   star,
-//   distance,
-//   moons,
-//   imageUrl
-// ) {
-//   // Here is the HTML formatting for our mission target div.
-//   /*
-//                 <h2>Mission Destination</h2>
-//                 <ol>
-//                     <li>Name: </li>
-//                     <li>Diameter: </li>
-//                     <li>Star: ${star}</li>
-//                     <li>Distance from Earth: </li>
-//                     <li>Number of Moons: </li>
-//                 </ol>
-//                 <img src="">
-//    */
-// }
+function addDestinationInfo(
+  document,
+  name,
+  diameter,
+  star,
+  distance,
+  moons,
+  imageUrl
+) {
+  //   // Here is the HTML formatting for our mission target div.
+  let mission = document.getElementById("missionTarget");
+  mission.innerHTML = `<h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter}</li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance}</li>
+                    <li>Number of Moons: ${moons} </li>
+                </ol>
+                 <img src="${image}">`;
+}
 
 function validateInput(testInput) {
   if (testInput === "") {
@@ -78,21 +77,21 @@ if (
   launchStatus.style.color = "green";
   launchStatus.innerHTML = "Shuttle is ready for launch.";
 }
-// }
+
 async function myFetch() {
   let planetsReturned;
 
   planetsReturned = await fetch(
     "https://handlers.education.launchcode.org/static/planets.json"
   ).then(function (response) {
-    response.json().then(function (json) {});
+    return response.json();
   });
 
   return planetsReturned;
 }
 
 function pickPlanet(planets) {
-  return Math.random();
+  return planets[Math.floor(Math.random() * planets.length)];
 }
 
 // module.exports.addDestinationInfo = addDestinationInfo;
