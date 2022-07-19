@@ -22,19 +22,19 @@ window.addEventListener("load", () => {
         planet.image
       );
     });
-  let list = document.getElementById("faultyItems");
-  let pilotInput = document.querySelector("input[name=pilotName]");
-  let pilot = String(pilotInput.value);
-  let copilotInput = document.querySelector("input[name=copilotName");
-  let copilot = String(copilotInput.value);
-  let fuelInput = document.querySelector("input[name=fuelLevel]");
-  let fuelLevel = Number(fuelInput.value);
-  let cargoInput = document.querySelector("input[name=cargoMass]");
-  let cargoLevel = Number(cargoInput.value);
-
   let form = document.querySelector("form");
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    let list = document.getElementById("faultyItems");
+    let pilotInput = document.querySelector("input[name=pilotName]");
+    let pilot = String(pilotInput.value);
+    let copilotInput = document.querySelector("input[name=copilotName");
+    let copilot = String(copilotInput.value);
+    let fuelInput = document.querySelector("input[name=fuelLevel]");
+    let fuelLevel = Number(fuelInput.value);
+    let cargoInput = document.querySelector("input[name=cargoMass]");
+    let cargoLevel = Number(cargoInput.value);
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
   });
 });
