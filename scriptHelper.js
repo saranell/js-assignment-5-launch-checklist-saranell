@@ -47,37 +47,43 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     validateInput(cargoLevel) === "Empty"
   ) {
     alert("All fields required!");
-  } else if (!isNaN(validateInput(pilot)) || !isNaN(validateInput(copilot))) {
-    alert("Invalid entry");
+    // } else if (!isNaN(validateInput(pilot)) || !isNaN(validateInput(copilot))) {
+    //   alert("Invalid entry");
+    // } else if (
+    //   isNaN(validateInput(fuelLevel)) ||
+    //   isNaN(validateInput(cargoLevel))
+    // ) {
+    //   alert("Invalid entry");
   } else if (
-    isNaN(validateInput(fuelLevel)) ||
-    isNaN(validateInput(cargoLevel))
+    validateInput(fuelLevel) < 10000 ||
+    validateInput(cargoLevel) > 10000
   ) {
-    alert("Invalid entry");
+    list.style.visibility = "visible";
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
+  } else if (
+    validateInput(fuelLevel) < 10000 &&
+    validateInput(cargoLevel) > 10000
+  ) {
+    list.style.visibility = "visible";
+    fuelStatus.innerHTML = "Not enough fuel for the journey!";
+    cargoStatus.innerHTML = "Too much mass for takeoff!";
+    launchStatus.style.color = "red";
+
+    // } else if (validateInput(cargoLevel) > 10000) {
+    //   list.style.visibility = "visible";
+    //   cargoStatus.innerHTML = "Too much mass for takeoff!";
+    //   launchStatus.innerHTML = "Shuttle not ready for launch.";
+    //   launchStatus.style.color = "red";
   } else {
     list.style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot ${pilot} ready`;
     copilotStatus.innerHTML = `Co-pilot ${copilot} ready`;
-
-    validateInput(fuelLevel);
-    validateInput(cargoLevel);
-    if (fuelLevel < 10000 && cargoLevel > 10000) {
-      list.style.visibility = "visible";
-      fuelStatus.innerHTML = "Not enough fuel for the journey!";
-      cargoStatus.innerHTML = "Too much mass for takeoff!";
-      launchStatus.innerHTML = "Shuttle not ready for launch.";
-      launchStatus.style.color = "red";
-    } else if (cargoLevel > 10000) {
-      list.style.visibility = "visible";
-      cargoStatus.innerHTML = "Too much mass for takeoff!";
-      launchStatus.innerHTML = "Shuttle not ready for launch.";
-      launchStatus.style.color = "red";
-    } else {
-      launchStatus.style.color = "green";
-      launchStatus.innerHTML = "Shuttle is ready for launch.";
-    }
+    launchStatus.style.color = "green";
+    launchStatus.innerHTML = "Shuttle is ready for launch.";
   }
 }
+
 async function myFetch() {
   let planetsReturned;
 
