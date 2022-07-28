@@ -28,13 +28,13 @@ window.addEventListener("load", () => {
 
     let list = document.getElementById("faultyItems");
     let pilotInput = document.querySelector("input[name=pilotName]");
-    let pilot = String(pilotInput.value);
+    let pilot = pilotInput.value;
     let copilotInput = document.querySelector("input[name=copilotName");
-    let copilot = String(copilotInput.value);
+    let copilot = copilotInput.value;
     let fuelInput = document.querySelector("input[name=fuelLevel]");
-    let fuelLevel = Number(fuelInput.value);
+    let fuelLevel = fuelInput.value;
     let cargoInput = document.querySelector("input[name=cargoMass]");
-    let cargoLevel = Number(cargoInput.value);
+    let cargoLevel = cargoInput.value;
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
   });
 });
